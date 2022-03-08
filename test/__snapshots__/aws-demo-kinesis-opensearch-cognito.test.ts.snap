@@ -1,0 +1,1669 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot test 1`] = `
+Object {
+  "Outputs": Object {
+    "ExportsOutputFnGetAtttransformlambda026D8192ArnA8C6CF4F": Object {
+      "Export": Object {
+        "Name": "snapshotTest-transform-lambda-stack:ExportsOutputFnGetAtttransformlambda026D8192ArnA8C6CF4F",
+      },
+      "Value": Object {
+        "Fn::GetAtt": Array [
+          "transformlambda026D8192",
+          "Arn",
+        ],
+      },
+    },
+    "transformlambdaarn": Object {
+      "Value": Object {
+        "Fn::GetAtt": Array [
+          "transformlambda026D8192",
+          "Arn",
+        ],
+      },
+    },
+  },
+  "Parameters": Object {},
+  "Resources": Object {
+    "transformlambda026D8192": Object {
+      "DependsOn": Array [
+        "transformlambdarole331FC6F4",
+      ],
+      "Properties": Object {
+        "Architectures": Array [
+          "x86_64",
+        ],
+        "Code": Object {},
+        "Environment": Object {
+          "Variables": Object {
+            "LOG_LEVEL": "DEBUG",
+          },
+        },
+        "FunctionName": "test-transform",
+        "Handler": "app.lambda_handler",
+        "MemorySize": 128,
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "transformlambdarole331FC6F4",
+            "Arn",
+          ],
+        },
+        "Runtime": "python3.9",
+        "Tags": Array [
+          Object {
+            "Key": "project",
+            "Value": "test",
+          },
+        ],
+        "Timeout": 300,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "transformlambdalogsB24A9D3D": Object {
+      "DeletionPolicy": "Delete",
+      "Properties": Object {
+        "LogGroupName": "/aws/lambda/test-transform",
+        "Tags": Array [
+          Object {
+            "Key": "project",
+            "Value": "test",
+          },
+        ],
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "transformlambdarole331FC6F4": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Transform lambda role for test",
+        "Policies": Array [
+          Object {
+            "PolicyDocument": Object {
+              "Statement": Array [
+                Object {
+                  "Action": "logs:CreateLogGroup",
+                  "Effect": "Allow",
+                  "Resource": "arn:aws:logs:us-east-1:123456789012:log-group:/aws/lambda/test-transform",
+                },
+                Object {
+                  "Action": Array [
+                    "logs:CreateLogStream",
+                    "logs:PutLogEvents",
+                  ],
+                  "Effect": "Allow",
+                  "Resource": "arn:aws:logs:us-east-1:123456789012:log-group:/aws/lambda/test-transform:*",
+                },
+              ],
+              "Version": "2012-10-17",
+            },
+            "PolicyName": "policy",
+          },
+        ],
+        "RoleName": "test-transform-lambda-Role",
+        "Tags": Array [
+          Object {
+            "Key": "project",
+            "Value": "test",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+  },
+  "Rules": Object {
+    "CheckBootstrapVersion": Object {
+      "Assertions": Array [
+        Object {
+          "Assert": Object {
+            "Fn::Not": Array [
+              Object {
+                "Fn::Contains": Array [
+                  Array [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  Object {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`snapshot test 2`] = `
+Object {
+  "Conditions": Object {
+    "AwsCdkKinesisEncryptedStreamsUnsupportedRegions": Object {
+      "Fn::Or": Array [
+        Object {
+          "Fn::Equals": Array [
+            Object {
+              "Ref": "AWS::Region",
+            },
+            "cn-north-1",
+          ],
+        },
+        Object {
+          "Fn::Equals": Array [
+            Object {
+              "Ref": "AWS::Region",
+            },
+            "cn-northwest-1",
+          ],
+        },
+      ],
+    },
+  },
+  "Outputs": Object {
+    "OpeSearchEndpoint": Object {
+      "Value": Object {
+        "Fn::Join": Array [
+          "",
+          Array [
+            "https://",
+            Object {
+              "Fn::GetAtt": Array [
+                "opensearch2F25E4C7",
+                "DomainEndpoint",
+              ],
+            },
+            "/_dashboards/app/home",
+          ],
+        ],
+      },
+    },
+    "cognitoauthCognitoIdentityPoolId335FB8A1": Object {
+      "Value": Object {
+        "Ref": "cognitoauthcognitoidpoolAC13DB26",
+      },
+    },
+    "cognitoauthCognitoUserPoolIdABBEF5F4": Object {
+      "Value": Object {
+        "Ref": "cognitoauthcognitouserpoolCBE7447F",
+      },
+    },
+  },
+  "Parameters": Object {},
+  "Resources": Object {
+    "AWS679f53fac002430cb0da5b7982bd22872D164C4C": Object {
+      "DependsOn": Array [
+        "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2",
+      ],
+      "Properties": Object {
+        "Code": Object {},
+        "Handler": "index.handler",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs12.x",
+        "Tags": Array [
+          Object {
+            "Key": "project",
+            "Value": "test",
+          },
+        ],
+        "Timeout": 120,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+        "Tags": Array [
+          Object {
+            "Key": "project",
+            "Value": "test",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "SingletonLambdamemsyshdevelopmentawscdkkinesislambdaopensearch5A9D5A1B": Object {
+      "DependsOn": Array [
+        "cfncustomresourcelambdarole4F9825BD",
+      ],
+      "Properties": Object {
+        "Architectures": Array [
+          "x86_64",
+        ],
+        "Code": Object {},
+        "Environment": Object {
+          "Variables": Object {
+            "LOG_LEVEL": "DEBUG",
+          },
+        },
+        "FunctionName": "test-custom-resource",
+        "Handler": "app.lambda_handler",
+        "MemorySize": 128,
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "cfncustomresourcelambdarole4F9825BD",
+            "Arn",
+          ],
+        },
+        "Runtime": "python3.9",
+        "Tags": Array [
+          Object {
+            "Key": "project",
+            "Value": "test",
+          },
+        ],
+        "Timeout": 300,
+        "VpcConfig": Object {
+          "SecurityGroupIds": Array [
+            "sg-123456789abcdef01",
+          ],
+          "SubnetIds": Array [
+            "subnet-0123456789abcdef0",
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "cfncustomresourcelambdarole4F9825BD": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Post set up CfnCustomResource Lambda role for test",
+        "Policies": Array [
+          Object {
+            "PolicyDocument": Object {
+              "Statement": Array [
+                Object {
+                  "Action": "logs:CreateLogGroup",
+                  "Effect": "Allow",
+                  "Resource": "arn:aws:logs:us-east-1:123456789012:log-group:/aws/lambda/test-custom-resource",
+                },
+                Object {
+                  "Action": Array [
+                    "logs:CreateLogStream",
+                    "logs:PutLogEvents",
+                  ],
+                  "Effect": "Allow",
+                  "Resource": "arn:aws:logs:us-east-1:123456789012:log-group:/aws/lambda/test-custom-resource:*",
+                },
+                Object {
+                  "Action": Array [
+                    "ec2:CreateNetworkInterface",
+                    "ec2:DescribeNetworkInterfaces",
+                    "ec2:DeleteNetworkInterface",
+                  ],
+                  "Effect": "Allow",
+                  "Resource": "*",
+                },
+                Object {
+                  "Action": "cognito-identity:DescribeIdentityPool",
+                  "Effect": "Allow",
+                  "Resource": Object {
+                    "Fn::Join": Array [
+                      "",
+                      Array [
+                        "arn:aws:cognito-identity:us-east-1:123456789012:identitypool/",
+                        Object {
+                          "Ref": "cognitoauthcognitoidpoolAC13DB26",
+                        },
+                      ],
+                    ],
+                  },
+                },
+                Object {
+                  "Action": "cognito-identity:SetIdentityPoolRoles",
+                  "Effect": "Allow",
+                  "Resource": "*",
+                },
+                Object {
+                  "Action": "es:ESHttpPut",
+                  "Effect": "Allow",
+                  "Resource": Array [
+                    "arn:aws:es:us-east-1:123456789012:domain/test/_plugins/_security/api/roles/firehose",
+                    "arn:aws:es:us-east-1:123456789012:domain/test/_plugins/_security/api/rolesmapping/firehose",
+                  ],
+                },
+                Object {
+                  "Action": "es:DescribeDomain",
+                  "Effect": "Allow",
+                  "Resource": "arn:aws:es:us-east-1:123456789012:domain/test",
+                },
+                Object {
+                  "Action": "sts:AssumeRole",
+                  "Effect": "Allow",
+                  "Resource": "arn:aws:iam::123456789012:role/test-opensearch-master-user-role",
+                },
+                Object {
+                  "Action": "iam:PassRole",
+                  "Effect": "Allow",
+                  "Resource": Array [
+                    Object {
+                      "Fn::GetAtt": Array [
+                        "cognitoauthidpauthenticatedrole0F32666D",
+                        "Arn",
+                      ],
+                    },
+                    Object {
+                      "Fn::GetAtt": Array [
+                        "cognitoauthidpunauthenticatedrole047E3AD6",
+                        "Arn",
+                      ],
+                    },
+                  ],
+                },
+              ],
+              "Version": "2012-10-17",
+            },
+            "PolicyName": "policy",
+          },
+        ],
+        "RoleName": "test-cfn-custom-resource-lambda-role",
+        "Tags": Array [
+          Object {
+            "Key": "project",
+            "Value": "test",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "cognitoauthcognitoidpoolAC13DB26": Object {
+      "Properties": Object {
+        "AllowClassicFlow": false,
+        "AllowUnauthenticatedIdentities": true,
+        "IdentityPoolName": "test-id-pool",
+      },
+      "Type": "AWS::Cognito::IdentityPool",
+    },
+    "cognitoauthcognitoidpoolroleattachmentB0B1DB01": Object {
+      "Properties": Object {
+        "IdentityPoolId": Object {
+          "Ref": "cognitoauthcognitoidpoolAC13DB26",
+        },
+        "Roles": Object {
+          "authenticated": Object {
+            "Fn::GetAtt": Array [
+              "cognitoauthidpauthenticatedrole0F32666D",
+              "Arn",
+            ],
+          },
+          "unauthenticated": Object {
+            "Fn::GetAtt": Array [
+              "cognitoauthidpunauthenticatedrole047E3AD6",
+              "Arn",
+            ],
+          },
+        },
+      },
+      "Type": "AWS::Cognito::IdentityPoolRoleAttachment",
+    },
+    "cognitoauthcognitouserpoolCBE7447F": Object {
+      "DeletionPolicy": "Delete",
+      "Properties": Object {
+        "AccountRecoverySetting": Object {
+          "RecoveryMechanisms": Array [
+            Object {
+              "Name": "verified_email",
+              "Priority": 1,
+            },
+          ],
+        },
+        "AdminCreateUserConfig": Object {
+          "AllowAdminCreateUserOnly": true,
+        },
+        "AliasAttributes": Array [
+          "email",
+        ],
+        "AutoVerifiedAttributes": Array [
+          "email",
+        ],
+        "EmailVerificationMessage": "The verification code to your new account is {####}",
+        "EmailVerificationSubject": "Verify your new account",
+        "Policies": Object {
+          "PasswordPolicy": Object {
+            "MinimumLength": 8,
+            "RequireLowercase": true,
+            "RequireNumbers": true,
+            "RequireSymbols": true,
+            "RequireUppercase": true,
+            "TemporaryPasswordValidityDays": 7,
+          },
+        },
+        "Schema": Array [
+          Object {
+            "Mutable": false,
+            "Name": "email",
+            "Required": true,
+          },
+        ],
+        "SmsVerificationMessage": "The verification code to your new account is {####}",
+        "UserPoolName": "test-user-pool",
+        "UserPoolTags": Object {
+          "project": "test",
+        },
+        "UsernameConfiguration": Object {
+          "CaseSensitive": false,
+        },
+        "VerificationMessageTemplate": Object {
+          "DefaultEmailOption": "CONFIRM_WITH_CODE",
+          "EmailMessage": "The verification code to your new account is {####}",
+          "EmailSubject": "Verify your new account",
+          "SmsMessage": "The verification code to your new account is {####}",
+        },
+      },
+      "Type": "AWS::Cognito::UserPool",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "cognitoauthcognitouserpoolcognitodomain4F54F1A0": Object {
+      "Properties": Object {
+        "Domain": "test",
+        "UserPoolId": Object {
+          "Ref": "cognitoauthcognitouserpoolCBE7447F",
+        },
+      },
+      "Type": "AWS::Cognito::UserPoolDomain",
+    },
+    "cognitoauthidpauthenticatedrole0F32666D": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRoleWithWebIdentity",
+              "Condition": Object {
+                "ForAnyValue:StringLike": Object {
+                  "cognito-identity.amazonaws.com:amr": "authenticated",
+                },
+                "StringEquals": Object {
+                  "cognito-identity.amazonaws.com:aud": Object {
+                    "Ref": "cognitoauthcognitoidpoolAC13DB26",
+                  },
+                },
+              },
+              "Effect": "Allow",
+              "Principal": Object {
+                "Federated": "cognito-identity.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Cognito identity pool authenticated role",
+        "Policies": Array [
+          Object {
+            "PolicyDocument": Object {
+              "Statement": Array [
+                Object {
+                  "Action": Array [
+                    "mobileanalytics:PutEvents",
+                    "cognito-sync:*",
+                    "cognito-identity:*",
+                  ],
+                  "Effect": "Allow",
+                  "Resource": "*",
+                },
+              ],
+              "Version": "2012-10-17",
+            },
+            "PolicyName": "policy",
+          },
+        ],
+        "RoleName": "test-idp-auth-role",
+        "Tags": Array [
+          Object {
+            "Key": "project",
+            "Value": "test",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "cognitoauthidpunauthenticatedrole047E3AD6": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRoleWithWebIdentity",
+              "Condition": Object {
+                "ForAnyValue:StringLike": Object {
+                  "cognito-identity.amazonaws.com:amr": "unauthenticated",
+                },
+                "StringEquals": Object {
+                  "cognito-identity.amazonaws.com:aud": Object {
+                    "Ref": "cognitoauthcognitoidpoolAC13DB26",
+                  },
+                },
+              },
+              "Effect": "Allow",
+              "Principal": Object {
+                "Federated": "cognito-identity.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Cognito identity pool unahthenticated role",
+        "Policies": Array [
+          Object {
+            "PolicyDocument": Object {
+              "Statement": Array [
+                Object {
+                  "Action": Array [
+                    "mobileanalytics:PutEvents",
+                    "cognito-sync:*",
+                  ],
+                  "Effect": "Allow",
+                  "Resource": "*",
+                },
+              ],
+              "Version": "2012-10-17",
+            },
+            "PolicyName": "policy",
+          },
+        ],
+        "RoleName": "test-idp-unauth-role",
+        "Tags": Array [
+          Object {
+            "Key": "project",
+            "Value": "test",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "cognitomasterusersgroup": Object {
+      "Properties": Object {
+        "Description": "OpenSearch master users group",
+        "GroupName": "master",
+        "Precedence": 1,
+        "RoleArn": Object {
+          "Fn::GetAtt": Array [
+            "opensearchmasteruserroleF5701431",
+            "Arn",
+          ],
+        },
+        "UserPoolId": Object {
+          "Ref": "cognitoauthcognitouserpoolCBE7447F",
+        },
+      },
+      "Type": "AWS::Cognito::UserPoolGroup",
+    },
+    "firehoseroleDDC4CF0E": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "firehose.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Firehose delivery stream role for test",
+        "Policies": Array [
+          Object {
+            "PolicyDocument": Object {
+              "Statement": Array [
+                Object {
+                  "Action": Array [
+                    "ec2:DescribeVpcs",
+                    "ec2:DescribeVpcAttribute",
+                    "ec2:DescribeSubnets",
+                    "ec2:DescribeSecurityGroups",
+                    "ec2:DescribeNetworkInterfaces",
+                    "ec2:CreateNetworkInterface",
+                    "ec2:CreateNetworkInterfacePermission",
+                    "ec2:DeleteNetworkInterface",
+                  ],
+                  "Effect": "Allow",
+                  "Resource": "*",
+                },
+                Object {
+                  "Action": Array [
+                    "s3:AbortMultipartUpload",
+                    "s3:GetBucketLocation",
+                    "s3:GetObject",
+                    "s3:ListBucket",
+                    "s3:ListBucketMultipartUploads",
+                    "s3:PutObject",
+                  ],
+                  "Effect": "Allow",
+                  "Resource": Array [
+                    Object {
+                      "Fn::Join": Array [
+                        "",
+                        Array [
+                          "arn:",
+                          Object {
+                            "Ref": "AWS::Partition",
+                          },
+                          ":s3:::test",
+                        ],
+                      ],
+                    },
+                    Object {
+                      "Fn::Join": Array [
+                        "",
+                        Array [
+                          "arn:",
+                          Object {
+                            "Ref": "AWS::Partition",
+                          },
+                          ":s3:::test/*",
+                        ],
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Action": Array [
+                    "lambda:InvokeFunction",
+                    "lambda:GetFunctionConfiguration",
+                  ],
+                  "Effect": "Allow",
+                  "Resource": Object {
+                    "Fn::ImportValue": "snapshotTest-transform-lambda-stack:ExportsOutputFnGetAtttransformlambda026D8192ArnA8C6CF4F",
+                  },
+                },
+                Object {
+                  "Action": Array [
+                    "es:DescribeElasticsearchDomain",
+                    "es:DescribeElasticsearchDomains",
+                    "es:DescribeElasticsearchDomainConfig",
+                    "es:ESHttpPost",
+                    "es:ESHttpPut",
+                  ],
+                  "Effect": "Allow",
+                  "Resource": Array [
+                    Object {
+                      "Fn::Join": Array [
+                        "",
+                        Array [
+                          "arn:aws:es:us-east-1:123456789012:domain/",
+                          Object {
+                            "Ref": "opensearch2F25E4C7",
+                          },
+                        ],
+                      ],
+                    },
+                    Object {
+                      "Fn::Join": Array [
+                        "",
+                        Array [
+                          "arn:aws:es:us-east-1:123456789012:domain/",
+                          Object {
+                            "Ref": "opensearch2F25E4C7",
+                          },
+                          "/*",
+                        ],
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Action": "es:ESHttpGet",
+                  "Effect": "Allow",
+                  "Resource": Array [
+                    Object {
+                      "Fn::Join": Array [
+                        "",
+                        Array [
+                          "arn:aws:es:us-east-1:123456789012:domain/",
+                          Object {
+                            "Ref": "opensearch2F25E4C7",
+                          },
+                          "/_all/_settings",
+                        ],
+                      ],
+                    },
+                    Object {
+                      "Fn::Join": Array [
+                        "",
+                        Array [
+                          "arn:aws:es:us-east-1:123456789012:domain/",
+                          Object {
+                            "Ref": "opensearch2F25E4C7",
+                          },
+                          "/_cluster/stats",
+                        ],
+                      ],
+                    },
+                    Object {
+                      "Fn::Join": Array [
+                        "",
+                        Array [
+                          "arn:aws:es:us-east-1:123456789012:domain/",
+                          Object {
+                            "Ref": "opensearch2F25E4C7",
+                          },
+                          "/cloudwatch-event*/_mapping/",
+                        ],
+                      ],
+                    },
+                    Object {
+                      "Fn::Join": Array [
+                        "",
+                        Array [
+                          "arn:aws:es:us-east-1:123456789012:domain/",
+                          Object {
+                            "Ref": "opensearch2F25E4C7",
+                          },
+                          "/_nodes",
+                        ],
+                      ],
+                    },
+                    Object {
+                      "Fn::Join": Array [
+                        "",
+                        Array [
+                          "arn:aws:es:us-east-1:123456789012:domain/",
+                          Object {
+                            "Ref": "opensearch2F25E4C7",
+                          },
+                          "/_nodes/stats",
+                        ],
+                      ],
+                    },
+                    Object {
+                      "Fn::Join": Array [
+                        "",
+                        Array [
+                          "arn:aws:es:us-east-1:123456789012:domain/",
+                          Object {
+                            "Ref": "opensearch2F25E4C7",
+                          },
+                          "/_nodes/*/stats",
+                        ],
+                      ],
+                    },
+                    Object {
+                      "Fn::Join": Array [
+                        "",
+                        Array [
+                          "arn:aws:es:us-east-1:123456789012:domain/",
+                          Object {
+                            "Ref": "opensearch2F25E4C7",
+                          },
+                          "/_stats",
+                        ],
+                      ],
+                    },
+                    Object {
+                      "Fn::Join": Array [
+                        "",
+                        Array [
+                          "arn:aws:es:us-east-1:123456789012:domain/",
+                          Object {
+                            "Ref": "opensearch2F25E4C7",
+                          },
+                          "/cloudwatch-event*/_stats",
+                        ],
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Action": "logs:PutLogEvents",
+                  "Effect": "Allow",
+                  "Resource": "arn:aws:logs:us-east-1:123456789012:log-group:/aws/kinesisfirehose/test:log-stream:*",
+                },
+                Object {
+                  "Action": Array [
+                    "kinesis:DescribeStream",
+                    "kinesis:GetShardIterator",
+                    "kinesis:GetRecords",
+                    "kinesis:ListShards",
+                  ],
+                  "Effect": "Allow",
+                  "Resource": Object {
+                    "Fn::Join": Array [
+                      "",
+                      Array [
+                        "arn:aws:kinesis:us-east-1:123456789012:stream/",
+                        Object {
+                          "Ref": "kinesisstream7162E27C",
+                        },
+                      ],
+                    ],
+                  },
+                },
+              ],
+              "Version": "2012-10-17",
+            },
+            "PolicyName": "policy",
+          },
+        ],
+        "RoleName": "test-firehose-role",
+        "Tags": Array [
+          Object {
+            "Key": "project",
+            "Value": "test",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "kinesisdatafirehose": Object {
+      "Properties": Object {
+        "AmazonopensearchserviceDestinationConfiguration": Object {
+          "BufferingHints": Object {
+            "IntervalInSeconds": 60,
+            "SizeInMBs": 1,
+          },
+          "CloudWatchLoggingOptions": Object {
+            "Enabled": false,
+            "LogGroupName": "/aws/kinesisfirehose/test",
+            "LogStreamName": "log",
+          },
+          "DomainARN": Object {
+            "Fn::GetAtt": Array [
+              "opensearch2F25E4C7",
+              "Arn",
+            ],
+          },
+          "IndexName": "test",
+          "IndexRotationPeriod": "OneDay",
+          "ProcessingConfiguration": Object {
+            "Enabled": true,
+            "Processors": Array [
+              Object {
+                "Parameters": Array [
+                  Object {
+                    "ParameterName": "LambdaArn",
+                    "ParameterValue": Object {
+                      "Fn::ImportValue": "snapshotTest-transform-lambda-stack:ExportsOutputFnGetAtttransformlambda026D8192ArnA8C6CF4F",
+                    },
+                  },
+                ],
+                "Type": "Lambda",
+              },
+            ],
+          },
+          "RetryOptions": Object {
+            "DurationInSeconds": 120,
+          },
+          "RoleARN": Object {
+            "Fn::GetAtt": Array [
+              "firehoseroleDDC4CF0E",
+              "Arn",
+            ],
+          },
+          "S3BackupMode": "AllDocuments",
+          "S3Configuration": Object {
+            "BucketARN": Object {
+              "Fn::Join": Array [
+                "",
+                Array [
+                  "arn:",
+                  Object {
+                    "Ref": "AWS::Partition",
+                  },
+                  ":s3:::test",
+                ],
+              ],
+            },
+            "BufferingHints": Object {
+              "IntervalInSeconds": 60,
+              "SizeInMBs": 1,
+            },
+            "CloudWatchLoggingOptions": Object {
+              "Enabled": false,
+              "LogGroupName": "/aws/kinesisfirehose/test",
+              "LogStreamName": "s3",
+            },
+            "CompressionFormat": "ZIP",
+            "ErrorOutputPrefix": "firehose/test/error/",
+            "Prefix": "firehose/test/",
+            "RoleARN": Object {
+              "Fn::GetAtt": Array [
+                "firehoseroleDDC4CF0E",
+                "Arn",
+              ],
+            },
+          },
+          "VpcConfiguration": Object {
+            "RoleARN": Object {
+              "Fn::GetAtt": Array [
+                "firehoseroleDDC4CF0E",
+                "Arn",
+              ],
+            },
+            "SecurityGroupIds": Array [
+              "sg-123456789abcdef01",
+            ],
+            "SubnetIds": Array [
+              "subnet-0123456789abcdef0",
+            ],
+          },
+        },
+        "DeliveryStreamName": "test",
+        "DeliveryStreamType": "KinesisStreamAsSource",
+        "KinesisStreamSourceConfiguration": Object {
+          "KinesisStreamARN": Object {
+            "Fn::GetAtt": Array [
+              "kinesisstream7162E27C",
+              "Arn",
+            ],
+          },
+          "RoleARN": Object {
+            "Fn::GetAtt": Array [
+              "firehoseroleDDC4CF0E",
+              "Arn",
+            ],
+          },
+        },
+        "Tags": Array [
+          Object {
+            "Key": "project",
+            "Value": "test",
+          },
+        ],
+      },
+      "Type": "AWS::KinesisFirehose::DeliveryStream",
+    },
+    "kinesisstream7162E27C": Object {
+      "Properties": Object {
+        "Name": "test",
+        "RetentionPeriodHours": 24,
+        "StreamEncryption": Object {
+          "Fn::If": Array [
+            "AwsCdkKinesisEncryptedStreamsUnsupportedRegions",
+            Object {
+              "Ref": "AWS::NoValue",
+            },
+            Object {
+              "EncryptionType": "KMS",
+              "KeyId": "alias/aws/kinesis",
+            },
+          ],
+        },
+        "StreamModeDetails": Object {
+          "StreamMode": "ON_DEMAND",
+        },
+        "Tags": Array [
+          Object {
+            "Key": "project",
+            "Value": "test",
+          },
+        ],
+      },
+      "Type": "AWS::Kinesis::Stream",
+    },
+    "opensearch2F25E4C7": Object {
+      "DeletionPolicy": "Delete",
+      "DependsOn": Array [
+        "opensearchESLogGroupPolicyc837d15cee9a7c0f9c63e7f12e0cef6ea900fa0f66CustomResourcePolicyCCDB2D07",
+        "opensearchESLogGroupPolicyc837d15cee9a7c0f9c63e7f12e0cef6ea900fa0f663127A38C",
+      ],
+      "Properties": Object {
+        "AdvancedSecurityOptions": Object {
+          "Enabled": true,
+          "InternalUserDatabaseEnabled": false,
+          "MasterUserOptions": Object {
+            "MasterUserARN": Object {
+              "Fn::GetAtt": Array [
+                "opensearchmasteruserroleF5701431",
+                "Arn",
+              ],
+            },
+          },
+        },
+        "ClusterConfig": Object {
+          "DedicatedMasterEnabled": false,
+          "InstanceCount": 1,
+          "InstanceType": "m5.large.search",
+          "ZoneAwarenessEnabled": false,
+        },
+        "CognitoOptions": Object {
+          "Enabled": true,
+          "IdentityPoolId": Object {
+            "Ref": "cognitoauthcognitoidpoolAC13DB26",
+          },
+          "RoleArn": Object {
+            "Fn::GetAtt": Array [
+              "opensearchcognitoauthrole3149B858",
+              "Arn",
+            ],
+          },
+          "UserPoolId": Object {
+            "Ref": "cognitoauthcognitouserpoolCBE7447F",
+          },
+        },
+        "DomainEndpointOptions": Object {
+          "EnforceHTTPS": true,
+          "TLSSecurityPolicy": "Policy-Min-TLS-1-2-2019-07",
+        },
+        "DomainName": "test",
+        "EBSOptions": Object {
+          "EBSEnabled": true,
+          "VolumeSize": 20,
+          "VolumeType": "gp2",
+        },
+        "EncryptionAtRestOptions": Object {
+          "Enabled": true,
+        },
+        "EngineVersion": "OpenSearch_1.1",
+        "LogPublishingOptions": Object {
+          "AUDIT_LOGS": Object {
+            "CloudWatchLogsLogGroupArn": Object {
+              "Fn::GetAtt": Array [
+                "opensearchlogsE90F7A02",
+                "Arn",
+              ],
+            },
+            "Enabled": true,
+          },
+          "ES_APPLICATION_LOGS": Object {
+            "CloudWatchLogsLogGroupArn": Object {
+              "Fn::GetAtt": Array [
+                "opensearchlogsE90F7A02",
+                "Arn",
+              ],
+            },
+            "Enabled": true,
+          },
+          "INDEX_SLOW_LOGS": Object {
+            "CloudWatchLogsLogGroupArn": Object {
+              "Fn::GetAtt": Array [
+                "opensearchlogsE90F7A02",
+                "Arn",
+              ],
+            },
+            "Enabled": true,
+          },
+          "SEARCH_SLOW_LOGS": Object {
+            "CloudWatchLogsLogGroupArn": Object {
+              "Fn::GetAtt": Array [
+                "opensearchlogsE90F7A02",
+                "Arn",
+              ],
+            },
+            "Enabled": true,
+          },
+        },
+        "NodeToNodeEncryptionOptions": Object {
+          "Enabled": true,
+        },
+        "Tags": Array [
+          Object {
+            "Key": "project",
+            "Value": "test",
+          },
+        ],
+        "VPCOptions": Object {
+          "SecurityGroupIds": Array [
+            "sg-123456789abcdef01",
+          ],
+          "SubnetIds": Array [
+            "subnet-0123456789abcdef0",
+          ],
+        },
+      },
+      "Type": "AWS::OpenSearchService::Domain",
+      "UpdatePolicy": Object {
+        "EnableVersionUpgrade": true,
+      },
+      "UpdateReplacePolicy": "Delete",
+    },
+    "opensearchAccessPolicy8D11ED73": Object {
+      "DeletionPolicy": "Delete",
+      "DependsOn": Array [
+        "opensearchAccessPolicyCustomResourcePolicy2E970169",
+        "opensearch2F25E4C7",
+      ],
+      "Properties": Object {
+        "Create": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "{\\"action\\":\\"updateDomainConfig\\",\\"service\\":\\"OpenSearch\\",\\"parameters\\":{\\"DomainName\\":\\"",
+              Object {
+                "Ref": "opensearch2F25E4C7",
+              },
+              "\\",\\"AccessPolicies\\":\\"{\\\\\\"Statement\\\\\\":[{\\\\\\"Action\\\\\\":\\\\\\"es:*\\\\\\",\\\\\\"Effect\\\\\\":\\\\\\"Allow\\\\\\",\\\\\\"Principal\\\\\\":{\\\\\\"AWS\\\\\\":\\\\\\"arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":iam::123456789012:root\\\\\\"},\\\\\\"Resource\\\\\\":\\\\\\"arn:aws:es:us-east-1:123456789012:domain/test/*\\\\\\"}],\\\\\\"Version\\\\\\":\\\\\\"2012-10-17\\\\\\"}\\"},\\"outputPaths\\":[\\"DomainConfig.AccessPolicies\\"],\\"physicalResourceId\\":{\\"id\\":\\"",
+              Object {
+                "Ref": "opensearch2F25E4C7",
+              },
+              "AccessPolicy\\"}}",
+            ],
+          ],
+        },
+        "InstallLatestAwsSdk": true,
+        "ServiceToken": Object {
+          "Fn::GetAtt": Array [
+            "AWS679f53fac002430cb0da5b7982bd22872D164C4C",
+            "Arn",
+          ],
+        },
+        "Update": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "{\\"action\\":\\"updateDomainConfig\\",\\"service\\":\\"OpenSearch\\",\\"parameters\\":{\\"DomainName\\":\\"",
+              Object {
+                "Ref": "opensearch2F25E4C7",
+              },
+              "\\",\\"AccessPolicies\\":\\"{\\\\\\"Statement\\\\\\":[{\\\\\\"Action\\\\\\":\\\\\\"es:*\\\\\\",\\\\\\"Effect\\\\\\":\\\\\\"Allow\\\\\\",\\\\\\"Principal\\\\\\":{\\\\\\"AWS\\\\\\":\\\\\\"arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":iam::123456789012:root\\\\\\"},\\\\\\"Resource\\\\\\":\\\\\\"arn:aws:es:us-east-1:123456789012:domain/test/*\\\\\\"}],\\\\\\"Version\\\\\\":\\\\\\"2012-10-17\\\\\\"}\\"},\\"outputPaths\\":[\\"DomainConfig.AccessPolicies\\"],\\"physicalResourceId\\":{\\"id\\":\\"",
+              Object {
+                "Ref": "opensearch2F25E4C7",
+              },
+              "AccessPolicy\\"}}",
+            ],
+          ],
+        },
+      },
+      "Type": "Custom::OpenSearchAccessPolicy",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "opensearchAccessPolicyCustomResourcePolicy2E970169": Object {
+      "DependsOn": Array [
+        "opensearch2F25E4C7",
+      ],
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "es:UpdateDomainConfig",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "opensearch2F25E4C7",
+                  "Arn",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "opensearchAccessPolicyCustomResourcePolicy2E970169",
+        "Roles": Array [
+          Object {
+            "Ref": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "opensearchESLogGroupPolicyc837d15cee9a7c0f9c63e7f12e0cef6ea900fa0f663127A38C": Object {
+      "DeletionPolicy": "Delete",
+      "DependsOn": Array [
+        "opensearchESLogGroupPolicyc837d15cee9a7c0f9c63e7f12e0cef6ea900fa0f66CustomResourcePolicyCCDB2D07",
+      ],
+      "Properties": Object {
+        "Create": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "{\\"service\\":\\"CloudWatchLogs\\",\\"action\\":\\"putResourcePolicy\\",\\"parameters\\":{\\"policyName\\":\\"ESLogPolicyc837d15cee9a7c0f9c63e7f12e0cef6ea900fa0f66\\",\\"policyDocument\\":\\"{\\\\\\"Statement\\\\\\":[{\\\\\\"Action\\\\\\":[\\\\\\"logs:PutLogEvents\\\\\\",\\\\\\"logs:CreateLogStream\\\\\\"],\\\\\\"Effect\\\\\\":\\\\\\"Allow\\\\\\",\\\\\\"Principal\\\\\\":{\\\\\\"Service\\\\\\":\\\\\\"es.amazonaws.com\\\\\\"},\\\\\\"Resource\\\\\\":[\\\\\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "opensearchlogsE90F7A02",
+                  "Arn",
+                ],
+              },
+              "\\\\\\"]}],\\\\\\"Version\\\\\\":\\\\\\"2012-10-17\\\\\\"}\\"},\\"physicalResourceId\\":{\\"id\\":\\"ESLogGroupPolicyc837d15cee9a7c0f9c63e7f12e0cef6ea900fa0f66\\"}}",
+            ],
+          ],
+        },
+        "Delete": "{\\"service\\":\\"CloudWatchLogs\\",\\"action\\":\\"deleteResourcePolicy\\",\\"parameters\\":{\\"policyName\\":\\"ESLogPolicyc837d15cee9a7c0f9c63e7f12e0cef6ea900fa0f66\\"},\\"ignoreErrorCodesMatching\\":\\"400\\"}",
+        "InstallLatestAwsSdk": true,
+        "ServiceToken": Object {
+          "Fn::GetAtt": Array [
+            "AWS679f53fac002430cb0da5b7982bd22872D164C4C",
+            "Arn",
+          ],
+        },
+        "Update": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "{\\"service\\":\\"CloudWatchLogs\\",\\"action\\":\\"putResourcePolicy\\",\\"parameters\\":{\\"policyName\\":\\"ESLogPolicyc837d15cee9a7c0f9c63e7f12e0cef6ea900fa0f66\\",\\"policyDocument\\":\\"{\\\\\\"Statement\\\\\\":[{\\\\\\"Action\\\\\\":[\\\\\\"logs:PutLogEvents\\\\\\",\\\\\\"logs:CreateLogStream\\\\\\"],\\\\\\"Effect\\\\\\":\\\\\\"Allow\\\\\\",\\\\\\"Principal\\\\\\":{\\\\\\"Service\\\\\\":\\\\\\"es.amazonaws.com\\\\\\"},\\\\\\"Resource\\\\\\":[\\\\\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "opensearchlogsE90F7A02",
+                  "Arn",
+                ],
+              },
+              "\\\\\\"]}],\\\\\\"Version\\\\\\":\\\\\\"2012-10-17\\\\\\"}\\"},\\"physicalResourceId\\":{\\"id\\":\\"ESLogGroupPolicyc837d15cee9a7c0f9c63e7f12e0cef6ea900fa0f66\\"}}",
+            ],
+          ],
+        },
+      },
+      "Type": "Custom::CloudwatchLogResourcePolicy",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "opensearchESLogGroupPolicyc837d15cee9a7c0f9c63e7f12e0cef6ea900fa0f66CustomResourcePolicyCCDB2D07": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "logs:PutResourcePolicy",
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": "logs:DeleteResourcePolicy",
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "opensearchESLogGroupPolicyc837d15cee9a7c0f9c63e7f12e0cef6ea900fa0f66CustomResourcePolicyCCDB2D07",
+        "Roles": Array [
+          Object {
+            "Ref": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "opensearchcognitoauthpolicy73DF1EB6": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "ec2:DescribeVpcs",
+                "cognito-identity:ListIdentityPools",
+                "cognito-idp:ListUserPools",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": Array [
+                "iam:GetRole",
+                "iam:PassRole",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "opensearchcognitoauthrole3149B858",
+                  "Arn",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "policy",
+        "Roles": Array [
+          Object {
+            "Ref": "opensearchcognitoauthrole3149B858",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "opensearchcognitoauthrole3149B858": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "es.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Cognito auth role for test",
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/AmazonOpenSearchServiceCognitoAccess",
+              ],
+            ],
+          },
+        ],
+        "RoleName": "test-cognito-auth-role",
+        "Tags": Array [
+          Object {
+            "Key": "project",
+            "Value": "test",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "opensearchlogsE90F7A02": Object {
+      "DeletionPolicy": "Delete",
+      "Properties": Object {
+        "LogGroupName": "/aws/opensearch/test",
+        "RetentionInDays": 180,
+        "Tags": Array [
+          Object {
+            "Key": "project",
+            "Value": "test",
+          },
+        ],
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "opensearchmasteruserroleF5701431": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRoleWithWebIdentity",
+              "Condition": Object {
+                "ForAnyValue:StringLike": Object {
+                  "cognito-identity.amazonaws.com:amr": "authenticated",
+                },
+                "StringEquals": Object {
+                  "cognito-identity.amazonaws.com:aud": Object {
+                    "Ref": "cognitoauthcognitoidpoolAC13DB26",
+                  },
+                },
+              },
+              "Effect": "Allow",
+              "Principal": Object {
+                "Federated": "cognito-identity.amazonaws.com",
+              },
+            },
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "AWS": Object {
+                  "Fn::GetAtt": Array [
+                    "cfncustomresourcelambdarole4F9825BD",
+                    "Arn",
+                  ],
+                },
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "OpenSearch master user role for test - Domain Name: test",
+        "Policies": Array [
+          Object {
+            "PolicyDocument": Object {
+              "Statement": Array [
+                Object {
+                  "Action": "es:*",
+                  "Effect": "Allow",
+                  "Resource": "arn:aws:es:us-east-1:123456789012:domain/test/*",
+                },
+              ],
+              "Version": "2012-10-17",
+            },
+            "PolicyName": "policy",
+          },
+        ],
+        "RoleName": "test-opensearch-master-user-role",
+        "Tags": Array [
+          Object {
+            "Key": "project",
+            "Value": "test",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "updatecognitoandopensearchcustomresourceA61A467C": Object {
+      "DeletionPolicy": "Delete",
+      "Properties": Object {
+        "ServiceToken": Object {
+          "Fn::GetAtt": Array [
+            "updatecognitoandopensearchcustomresourcecustomresourceproviderframeworkonEvent60C0F8A4",
+            "Arn",
+          ],
+        },
+        "cognitoIdentityPoolAuthRole": Object {
+          "Fn::GetAtt": Array [
+            "cognitoauthidpauthenticatedrole0F32666D",
+            "Arn",
+          ],
+        },
+        "cognitoIdentityPoolId": Object {
+          "Ref": "cognitoauthcognitoidpoolAC13DB26",
+        },
+        "cognitoIdentityPoolUnauthRole": Object {
+          "Fn::GetAtt": Array [
+            "cognitoauthidpunauthenticatedrole047E3AD6",
+            "Arn",
+          ],
+        },
+        "firehoseRoleArn": Object {
+          "Fn::GetAtt": Array [
+            "firehoseroleDDC4CF0E",
+            "Arn",
+          ],
+        },
+        "openSearchDomainEndpoint": Object {
+          "Fn::GetAtt": Array [
+            "opensearch2F25E4C7",
+            "DomainEndpoint",
+          ],
+        },
+        "openSearchMasterUserRoleArn": Object {
+          "Fn::GetAtt": Array [
+            "opensearchmasteruserroleF5701431",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::CloudFormation::CustomResource",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "updatecognitoandopensearchcustomresourcecfncustomresourcelambdalogs4D5A4525": Object {
+      "DeletionPolicy": "Delete",
+      "Properties": Object {
+        "LogGroupName": "/aws/lambda/test-custom-resource",
+        "Tags": Array [
+          Object {
+            "Key": "project",
+            "Value": "test",
+          },
+        ],
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "updatecognitoandopensearchcustomresourcecustomresourceproviderframeworkonEvent60C0F8A4": Object {
+      "DependsOn": Array [
+        "updatecognitoandopensearchcustomresourcecustomresourceproviderframeworkonEventServiceRoleDefaultPolicy4548E260",
+        "updatecognitoandopensearchcustomresourcecustomresourceproviderframeworkonEventServiceRole6AE650F0",
+      ],
+      "Properties": Object {
+        "Code": Object {},
+        "Description": "AWS CDK resource provider framework - onEvent (snapshotTest-kinesis-opensearch-stack/update-cognito-and-opensearch-custom-resource/custom-resource-provider)",
+        "Environment": Object {
+          "Variables": Object {
+            "USER_ON_EVENT_FUNCTION_ARN": Object {
+              "Fn::GetAtt": Array [
+                "SingletonLambdamemsyshdevelopmentawscdkkinesislambdaopensearch5A9D5A1B",
+                "Arn",
+              ],
+            },
+          },
+        },
+        "Handler": "framework.onEvent",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "updatecognitoandopensearchcustomresourcecustomresourceproviderframeworkonEventServiceRole6AE650F0",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs12.x",
+        "Tags": Array [
+          Object {
+            "Key": "project",
+            "Value": "test",
+          },
+        ],
+        "Timeout": 900,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "updatecognitoandopensearchcustomresourcecustomresourceproviderframeworkonEventServiceRole6AE650F0": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+        "Tags": Array [
+          Object {
+            "Key": "project",
+            "Value": "test",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "updatecognitoandopensearchcustomresourcecustomresourceproviderframeworkonEventServiceRoleDefaultPolicy4548E260": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "SingletonLambdamemsyshdevelopmentawscdkkinesislambdaopensearch5A9D5A1B",
+                  "Arn",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "updatecognitoandopensearchcustomresourcecustomresourceproviderframeworkonEventServiceRoleDefaultPolicy4548E260",
+        "Roles": Array [
+          Object {
+            "Ref": "updatecognitoandopensearchcustomresourcecustomresourceproviderframeworkonEventServiceRole6AE650F0",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+  },
+  "Rules": Object {
+    "CheckBootstrapVersion": Object {
+      "Assertions": Array [
+        Object {
+          "Assert": Object {
+            "Fn::Not": Array [
+              Object {
+                "Fn::Contains": Array [
+                  Array [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  Object {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;
