@@ -33,6 +33,7 @@ def on_create(event):
     )
     responseOpenSearch = update_opensearch_role_for_firehose(
         openSearchDomainEndpoint=props['openSearchDomainEndpoint'],
+        openSearchIndexName=props['openSearchIndexName'],
         awsauth=awsauth,
         firehoseRoleArn=props['firehoseRoleArn']
     )
@@ -75,11 +76,11 @@ def update_cognito_identity_pool_roles(identityPoolId, identityPoolAuthRoleArn, 
         logger.error(e)
         return {}
 
-def update_opensearch_role_for_firehose(openSearchDomainEndpoint, awsauth, firehoseRoleArn):
+def update_opensearch_role_for_firehose(openSearchDomainEndpoint, openSearchIndexName, awsauth, firehoseRoleArn):
     try:
         response = requests.put(f"https://{openSearchDomainEndpoint}/_plugins/_security/api/roles/firehose",
             auth=awsauth,
-            json=build_role_payload())
+            json=build_role_payload(openSearchIndexName))
         logger.debug('Response create opensearch role for firehose:')
         logger.debug(response.text)
         response.raise_for_status()
@@ -129,7 +130,7 @@ def lambda_handler(event, context):
 
     raise Exception(f'Invalid request type: {request_type}')
 
-def build_role_payload():
+def build_role_payload(opensearch_index_name):
     return {
         "cluster_permissions" : [
             "cluster_composite_ops",
@@ -138,7 +139,7 @@ def build_role_payload():
         "index_permissions" : [
             {
                 "index_patterns" : [
-                    "test-*"
+                    f"{opensearch_index_name}-*"
                 ],
                 "dls" : "",
                 "fls" : [],

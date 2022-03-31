@@ -22,6 +22,7 @@ export type UpdateCognitoAndOpenSearchCustomResourceConstructProps = {
   cognitoIdentityPoolAuthRole: iam.IRole,
   cognitoIdentityPoolUnauthRole: iam.IRole,
   openSearchDomainEndpoint: string,
+  openSearchIndexName: string,
   openSearchMasterUserRole: iam.IRole,
   firehoseRole: iam.IRole
 };
@@ -96,6 +97,7 @@ export class UpdateCognitoAndOpenSearchCustomResource extends Construct {
         'cognitoIdentityPoolAuthRole': props.cognitoIdentityPoolAuthRole.roleArn,
         'cognitoIdentityPoolUnauthRole': props.cognitoIdentityPoolUnauthRole.roleArn,
         'openSearchDomainEndpoint': props.openSearchDomainEndpoint,
+        'openSearchIndexName': props.openSearchIndexName,
         'openSearchMasterUserRoleArn': props.openSearchMasterUserRole.roleArn,
         'firehoseRoleArn': props.firehoseRole.roleArn
       },

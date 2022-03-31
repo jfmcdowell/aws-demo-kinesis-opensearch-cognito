@@ -544,6 +544,7 @@ export class KinesisOpenSearchStack extends Stack {
       cognitoIdentityPoolAuthRole: cognitoAuth.props.identityPoolAuthRole,
       cognitoIdentityPoolUnauthRole: cognitoAuth.props.identityPoolUnauthRole,
       openSearchDomainEndpoint: openSearchDomain.domainEndpoint,
+      openSearchIndexName: openSearchIndexName,
       openSearchMasterUserRole: masterUserRole,
       firehoseRole: deliveryStreamRole
     });
